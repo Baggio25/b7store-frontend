@@ -1,12 +1,41 @@
+"use client";
+
 import { Banner } from "@/types/banner";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 type Props = {
   list: Banner[];
 };
 
+let bannerTimer: NodeJS.Timeout;
+let bannerTime = 4000;
+
 export function Banners({ list }: Props) {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  function nextImage() {
+    setCurrentImage((currentImage) => {
+      if (currentImage + 1 >= list.length) {
+        return 0;
+      } else {
+        return currentImage + 1;
+      }
+    });
+  }
+
+  function handleBannerClick(index: number) {
+    setCurrentImage(index);
+    clearInterval(bannerTimer);
+    bannerTimer = setInterval(nextImage, bannerTime);
+  }
+
+  useEffect(() => {
+    bannerTimer = setInterval(nextImage, bannerTime);
+    return () => clearInterval(bannerTimer);
+  }, []);
+
   return (
     <div>
       <div className="relative aspect-[3/1]">
@@ -15,6 +44,9 @@ export function Banners({ list }: Props) {
             key={index}
             href={banner.link}
             className="absolute inset-0 transition-all"
+            style={{
+              opacity: currentImage === index ? 1 : 0,
+            }}
           >
             <Image
               src={banner.img}
@@ -26,7 +58,18 @@ export function Banners({ list }: Props) {
           </Link>
         ))}
       </div>
-      <div className="">...</div>
+      <div className="mt-4 flex justify-center gap-4">
+        {list.map((banner, index) => (
+          <div
+            key={index}
+            className="size-3 bg-blue-600 rounded-full cursor-pointer"
+            style={{
+              opacity: currentImage === index ? 1 : 0.3,
+            }}
+            onClick={() => handleBannerClick(index)}
+          ></div>
+        ))}
+      </div>
     </div>
   );
 }
