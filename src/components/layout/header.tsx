@@ -1,9 +1,11 @@
 "use client";
 
-import Image from "next/image";
-import { HeaderIcon } from "./header-icon";
-import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+
+import { HeaderIcon } from "./header-icon";
+import { HeaderSearch } from "./header-search";
 
 type MenuItem = {
   label: string;
@@ -26,9 +28,13 @@ export function Header() {
 
   return (
     <header className="bg-white border-b border-gray-200">
-      <div className="bg-black text-white text-center p-4">
-        <strong>FRETE GRÁTIS</strong> para todo o Brasil nas compras acima de R$
-        199,00. <strong>APROVEITA!</strong>
+      <div className="bg-black text-white text-center p-4 flex justify-center">
+        <p>
+          <strong>FRETE GRÁTIS</strong> para todo o Brasil
+        </p>
+        <p className="hidden lg:block">
+          nas compras acima de R$ 199,00. <strong>APROVEITA!</strong>
+        </p>
       </div>
       <div className="w-full max-w-6xl mx-auto p-6">
         <div className="flex items-center justify-between">
@@ -87,7 +93,9 @@ export function Header() {
           ))}
         </div>
       )}
-      <div className="p-6 md:hidden">Busca mobile</div>
+      <div className="p-6 md:hidden">
+        <HeaderSearch />
+      </div>
     </header>
   );
 }
