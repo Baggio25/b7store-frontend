@@ -3,23 +3,38 @@ import Image from "next/image";
 type Props = {
   src: string;
   alt: string;
+  selected?: boolean;
+  srcSelected?: string;
 };
 
-export function HeaderIcon({ src, alt }: Props) {
+export function HeaderIcon({ src, alt, selected, srcSelected }: Props) {
   return (
     <div
-      className="
+      className={`
             size-12 border border-gray-200 
-            rounded-sm flex justify-center 
-            items-center hover:bg-gray-100"
+            rounded-sm flex justify-center items-center 
+            ${selected ? "bg-blue-600" : "hover:bg-gray-100"}
+        `}
     >
-      <Image
-        src={src}
-        alt={alt}
-        width={24}
-        height={24}
-        className="size-6 cursor-pointer"
-      />
+      {!selected && (
+        <Image
+          src={src}
+          alt={alt}
+          width={24}
+          height={24}
+          className="size-6 cursor-pointer"
+        />
+      )}
+
+      {selected && srcSelected && (
+        <Image
+          src={srcSelected}
+          alt={alt}
+          width={24}
+          height={24}
+          className="size-6 cursor-pointer"
+        />
+      )}
     </div>
   );
 }
