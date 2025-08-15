@@ -8,7 +8,7 @@ import { data } from "@/data";
 
 export default function Page() {
   return (
-    <div className="pb-96">
+    <div>
       <Banners list={data.banners} />
       <InfoArea />
 

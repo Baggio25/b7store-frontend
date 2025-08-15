@@ -6,11 +6,7 @@ import Link from "next/link";
 
 import { HeaderIcon } from "./header-icon";
 import { HeaderSearch } from "./header-search";
-
-type MenuItem = {
-  label: string;
-  href: string;
-};
+import { MenuItem } from "@/types/menu-item";
 
 export function Header() {
   const menu: MenuItem[] = [
