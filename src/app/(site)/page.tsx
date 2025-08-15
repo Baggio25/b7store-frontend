@@ -1,9 +1,10 @@
+import { Suspense } from "react";
 import { Banners } from "@/components/home/banners";
 import { InfoArea } from "@/components/home/info-area";
+import { MostSoldProductsList } from "@/components/home/most-sold-products-list";
 import { MostViewedProductsList } from "@/components/home/most-viewed-products-list";
 import { ProductListSkeleton } from "@/components/home/product-list-skeleton";
 import { data } from "@/data";
-import { Suspense } from "react";
 
 export default function Page() {
   return (
@@ -14,7 +15,9 @@ export default function Page() {
       <Suspense fallback={<ProductListSkeleton />}>
         <MostViewedProductsList />
       </Suspense>
-      <Suspense fallback={<ProductListSkeleton />}></Suspense>
+      <Suspense fallback={<ProductListSkeleton />}>
+        <MostSoldProductsList />
+      </Suspense>
     </div>
   );
 }
