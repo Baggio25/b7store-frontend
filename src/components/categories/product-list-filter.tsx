@@ -1,9 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { useQueryString } from "@/hooks/use-query-string";
 
 export function ProductListFilter() {
+  const queryString = useQueryString();
   const [filterOpened, setFilterOpened] = useState(false);
+
+  const order = queryString.get("order") ?? "views";
+
+  function handleSelectChanged(e: ChangeEvent<HTMLSelectElement>) {
+    queryString.set("order", e.target.value);
+  }
 
   return (
     <div>
@@ -14,10 +22,14 @@ export function ProductListFilter() {
 
         <div className="flex flex-row w-full md:max-w-70 gap-5">
           <select
+            onChange={handleSelectChanged}
+            defaultValue={order}
             className="flex-1 flex items-center px-6 h-14 bg-white border
              border-gray-200 rounded-sm text-gray-500"
           >
-            <option value="">Ordenar por</option>
+            <option value="views">Popularidade</option>
+            <option value="price">Preço</option>
+            <option value="selling">Mais vendidos</option>
           </select>
 
           <div
