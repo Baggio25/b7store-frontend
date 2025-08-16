@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function Footer() {
   const menu: MenuItem[] = [
-    { label: "Camisas", href: "/categories/camisas" },
+    { label: "Camisetas", href: "/categories/camisetas" },
     { label: "Kits", href: "/categories/kits" },
   ];
   return (

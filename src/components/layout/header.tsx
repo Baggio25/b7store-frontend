@@ -12,7 +12,7 @@ export function Header() {
   const menu: MenuItem[] = [
     {
       label: "Camisetas",
-      href: "/categories/camiseta",
+      href: "/categories/camisetas",
     },
     {
       label: "Kits B7Web",
