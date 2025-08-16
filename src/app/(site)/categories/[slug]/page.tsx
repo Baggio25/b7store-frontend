@@ -16,11 +16,18 @@ export default async function Page({ params, searchParams }: Props) {
         <Link href={""}>Categoria</Link> &gt; Temporário
       </div>
 
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+      <div className="flex flex-col md:flex-row gap-6 justify-between items-start md:items-center">
         <div className="text-3xl">
           <strong>99</strong> Produtos
         </div>
-        <div className="">...</div>
+        <div className="flex flex-row w-full md:max-w-70 gap-5">
+          <select className="flex-1 flex items-center px-6 h-14 bg-white border border-gray-200 rounded-sm text-gray-500">
+            <option value="">Ordenar por</option>
+          </select>
+          <div className="flex-1 md:hidden flex items-center px-6 h-14 bg-white border border-gray-200 rounded-sm text-gray-500">
+            Filtrar por
+          </div>
+        </div>
       </div>
 
       <div className="flex flex-col md:flex-row gap-8 mt-8">
