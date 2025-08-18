@@ -49,8 +49,8 @@ export function ProductListFilter() {
             filterOpened ? "block" : "hidden"
           } md:block`}
         >
-          <FilterGroup />
-          <FilterGroup />
+          <FilterGroup id="tech" name="Tecnologias" />
+          <FilterGroup id="color" name="Cores" />
         </div>
         <div className="flex-1 grid grid-cols-1 md:grid-cols-3">
           <div>Produto</div>
