@@ -15,7 +15,10 @@ export default async function Page({ params, searchParams }: Props) {
   return (
     <div>
       <div className="text-gray-500 mb-4">
-        <Link href={""}>Categoria</Link> &gt; Temporário
+        <div>
+          <Link href={"/"}>Home</Link> &gt; <Link href={"/"}>Camisetas</Link>{" "}
+          &gt; <p>Nome do produto</p>
+        </div>
       </div>
 
       <ProductListFilter />
