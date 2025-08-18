@@ -14,10 +14,9 @@ export default async function Page({ params, searchParams }: Props) {
   console.log(filters);
   return (
     <div>
-      <div className="text-gray-500 mb-4">
+      <div className="text-gray-500 mb-4 flex gap-2">
         <div>
-          <Link href={"/"}>Home</Link> &gt; <Link href={"/"}>Camisetas</Link>{" "}
-          &gt; <p>Nome do produto</p>
+          <Link href={"/"}>Home</Link> &gt; <Link href={"/"}>Camisetas</Link>
         </div>
       </div>
 
