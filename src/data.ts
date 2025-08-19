@@ -40,7 +40,7 @@ export const data = {
     label: "Camisa React",
     price: 79.9,
     images: [
-      "/assets/products/camiseta-php",
+      "/assets/products/camiseta-php.png",
       "/assets/products/camiseta-laravel-branca.png",
     ],
     liked: false,
