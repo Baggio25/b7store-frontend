@@ -10,7 +10,7 @@ type Props = {
 
 export function ProductDetails({ product }: Props) {
   async function addToCart() {
-    console.log("Item adicionado");
+    alert("Item adicionado");
   }
 
   return (
