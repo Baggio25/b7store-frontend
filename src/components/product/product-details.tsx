@@ -1,14 +1,18 @@
 "use client";
 
-import { formatter } from "@/libs/number-formatter";
-import { ProductComplete } from "@/types/product";
 import Image from "next/image";
+
+import { formatter } from "@/libs/number-formatter";
+import { useCartStore } from "@/store/cart";
+import { ProductComplete } from "@/types/product";
 
 type Props = {
   product: ProductComplete;
 };
 
 export function ProductDetails({ product }: Props) {
+  const cartStore = useCartStore((state) => state);
+
   async function addToCart() {}
 
   return (
@@ -19,6 +23,7 @@ export function ProductDetails({ product }: Props) {
         {formatter.format(product.price)}
       </div>
       <div className="text-sm text-gray-500 mb-6">Em até 12x no cartão</div>
+      <div>CARRINHO: {cartStore.cart.length}</div>
       <div className="flex gap-4">
         <button
           onClick={addToCart}
