@@ -9,9 +9,7 @@ type Props = {
 };
 
 export function ProductDetails({ product }: Props) {
-  async function addToCart() {
-    alert("Item adicionado");
-  }
+  async function addToCart() {}
 
   return (
     <div className="flex-1">
