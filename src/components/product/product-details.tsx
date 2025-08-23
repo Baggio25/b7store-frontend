@@ -5,6 +5,8 @@ import Image from "next/image";
 import { formatter } from "@/libs/number-formatter";
 import { useCartStore } from "@/store/cart";
 import { ProductComplete } from "@/types/product";
+import { setCartState } from "@/actions/set-cart-state";
+import { redirect } from "next/navigation";
 
 type Props = {
   product: ProductComplete;
@@ -13,7 +15,14 @@ type Props = {
 export function ProductDetails({ product }: Props) {
   const cartStore = useCartStore((state) => state);
 
-  async function addToCart() {}
+  async function addToCart() {
+    cartStore.addItem({ productId: product.id, quantity: 1 });
+
+    const updatedCart = useCartStore.getState().cart;
+    await setCartState(updatedCart);
+
+    redirect("/cart");
+  }
 
   return (
     <div className="flex-1">
