@@ -28,13 +28,12 @@ export default async function Page() {
     }
   }
 
-  initialCart;
-  cartProducts;
-  subtotal;
-
   return (
     <div>
-      <CartContainer />
+      <CartContainer
+        initialCartProduct={cartProducts}
+        initialSubtotal={subtotal}
+      />
     </div>
   );
 }
