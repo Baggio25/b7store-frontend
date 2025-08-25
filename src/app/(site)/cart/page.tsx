@@ -31,7 +31,7 @@ export default async function Page() {
   return (
     <div>
       <CartContainer
-        initialCartProduct={cartProducts}
+        initialCartProducts={cartProducts}
         initialSubtotal={subtotal}
       />
     </div>
