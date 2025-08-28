@@ -24,7 +24,7 @@ export function Header() {
 
   return (
     <header className="bg-white border-b border-gray-200">
-      <div className="bg-black text-white text-center p-4 flex justify-center">
+      <div className="bg-blue-950 text-white text-center p-4 flex justify-center">
         <p>
           <strong>FRETE GRÁTIS</strong> para todo o Brasil
         </p>
