@@ -2,9 +2,12 @@
 
 import { ChangeEvent, FormEvent, useState, useTransition } from "react";
 import z from "zod";
+import Link from "next/link";
 
 import { useAuthStore } from "@/store/auth";
-import Link from "next/link";
+import { login } from "@/actions/login";
+import { setAuthCookie } from "@/actions/set-auth-cookie";
+import { redirect } from "next/navigation";
 
 const schema = z.object({
   email: z.email({ message: "E-mail inválido" }),
@@ -27,9 +30,42 @@ export function LoginForm() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    const result = schema.safeParse(form);
+
+    if (!result.success) {
+      const fieldErrors: any = {};
+      result.error.issues.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0]] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
+    setErrors({});
+    startTransition(async () => {
+      const res = await login(form);
+      if (res.error) {
+        setErrors({
+          form: res.error,
+        });
+      } else if (res.token) {
+        await setAuthCookie(res.token);
+        authStore.setToken(res.token);
+        redirect("/");
+      }
+    });
   }
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {}
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setForm((form) => ({ ...form, [e.target.name]: e.target.value }));
+    setErrors((errors) => ({
+      ...errors,
+      [e.target.name]: undefined,
+      form: undefined,
+    }));
+  }
 
   return (
     <form
